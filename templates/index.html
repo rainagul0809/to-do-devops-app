@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My To-Do App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #f0f4f8;
+        }
+
+        h1 {
+            color: #1F3864;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #1F3864;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #2E75B6;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        a {
+            padding: 6px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            color: white;
+            margin-left: 5px;
+        }
+
+        .complete-btn {
+            background-color: #22C55E;
+        }
+
+        .delete-btn {
+            background-color: #EF4444;
+        }
+
+        s {
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📝 My To-Do App</h1>
+
+    <form action="/" method="POST">
+        <input type="text" name="task" placeholder="Enter your task...">
+        <button type="submit">Add Task</button>
+    </form>
+
+    <ul>
+    {% for i in range(tasks|length) %}
+        <li>
+            {% if completed[i] %}
+                <s>{{ tasks[i] }}</s>
+            {% else %}
+                {{ tasks[i] }}
+                <a href="/complete/{{ i }}" class="complete-btn">✅ Complete</a>
+            {% endif %}
+            <a href="/delete/{{ i }}" class="delete-btn">🗑️ Delete</a>
+        </li>
+    {% endfor %}
+    </ul>
+
+</body>
+</html>
+
