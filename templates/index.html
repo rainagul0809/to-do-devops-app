@@ -90,19 +90,18 @@
     </form>
 
     <ul>
-    {% for i in range(tasks|length) %}
+    {% for task in tasks %}
         <li>
-            {% if completed[i] %}
-                <s>{{ tasks[i] }}</s>
+            {% if task[2] %}
+                <s>{{ task[1] }}</s>
             {% else %}
-                {{ tasks[i] }}
-                <a href="/complete/{{ i }}" class="complete-btn">✅ Complete</a>
+                {{ task[1] }}
+                <a href="/complete/{{ task[0] }}" class="complete-btn">✅ Complete</a>
             {% endif %}
-            <a href="/delete/{{ i }}" class="delete-btn">🗑️ Delete</a>
+            <a href="/delete/{{ task[0] }}" class="delete-btn">🗑️ Delete</a>
         </li>
     {% endfor %}
     </ul>
 
 </body>
 </html>
-
